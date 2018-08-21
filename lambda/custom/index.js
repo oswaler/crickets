@@ -2,6 +2,52 @@
 
 var Alexa = require('alexa-sdk');
 
+// Define sets of signoffs and welcomes to be chosen at random on play and stop
+const NightSignOff = [
+  'Its time for all good crickets to go to sleep now.',
+  'Good night, maybe the crickets will visit you in your dreams.',
+  'The crickets will let you sleep now. They told me to say good night.',
+  'The owls say sweet dreams.',
+  'I\'ll let the crickets go to sleep now.',
+  'The crickets say its time for everyone outdoors to go to bed now.',
+  'Its time for some peace and quiet now.',
+  'Everyone outdoors says good night.',
+  'I\'ll let the crickets go to sleep now.',
+  'I\'ll put the train in the station and everyone will be quiet now.',
+  'Its time for the crickets to have their dinner anyway.',
+];
+
+const MorningSignOff = [
+  'Its time for the crickets to go have their breakfast anyway.',
+  'I\'ll let the crickets get on with their day.',
+  'The crickets have been singing all night. Its time for them to take a nap.',
+  'I\'ll let the crickets out now. They told me to say have a good day.',
+  'The owls say have a good morning.',
+  'I hope you have a nice day.',
+  'The crickets will be here later.',
+  'Don\'t worry, I\'ll make sure the crickets are around to sing to you tonight.',
+];
+
+const AfternoonSignOff = [
+  'I\'ll let the crickets take a nap so they\'ll be ready to sing to you tonight.',
+  'The crickets say have a nice afternoon.',
+  'Its time for the crickets to have their lunch anyway.',
+  'Its time for the owls to go take a nap now.',
+  'I\'ll let everyone go play until you\'re ready for them later.',
+  'I need to go let the dogs out anyway.',
+];
+
+const SignOn = [
+  'Let me open the window so you can hear everyone.',
+  'Let me go wake up the crickets.',
+  'Let\'s see if the crickets are ready.',
+  'I think I hear the crickets, let me go open the window.',
+  'Crickets, all together now. One, Two, Three.',
+  'The crickets just finished warming up. They\'re ready to sing for you now.',
+  'Give me a second, I just need to make sure everyone\'s ready.',
+  'I just need to round everyone up.',
+];
+
 
 var streamInfo = {
   title: 'Outdoor Scene',
@@ -36,7 +82,15 @@ var handlers = {
     this.emit('PlayStream');
   },
   'PlayStream': function() {
-    this.response.audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
+    
+    //choose random welcome signon
+    var SignOnArr = SignOn;
+    var SignOnIndex = Math.floor(Math.random() * SignOnArr.length);
+    var randomSignOn = SignOnArr[SignOnIndex];
+    var speechOutput = 'Okay, ' + randomSignOn;
+    
+    
+    this.response.speak(speechOutput).audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
     this.emit(':responseReady');
   },
   'AMAZON.HelpIntent': function() {
@@ -76,22 +130,11 @@ var handlers = {
   'AMAZON.StopIntent': function() {
     console.log()
 
-    var NightSignOff = [
-      'Its time for all good crickets to go to sleep now.',
-      'Good night, maybe the crickets will visit you in your dreams.',
-      'The crickets will let you sleep now. They told me to say good night.',
-      'The owls say sweet dreams.',
-      'The crickets say its time for everyone outdoors to go to bed now.',
-      'Its time for some peace and quiet now.',
-      'Everyone outdoors says good night.',
-      'Okay. I\'ll let the crickets go to sleep now.',
-      'I\'ll put the train in the station and everyone will be quiet now.',
-      'Its time for the crickets to have their dinner anyway.',
-    ];
+    // Choose random signoff message from proper set of signoffs
     var SignOffArr = NightSignOff;
     var SignOffIndex = Math.floor(Math.random() * SignOffArr.length);
     var randomSignOff = SignOffArr[SignOffIndex];
-    var speechOutput = randomSignOff;
+    var speechOutput = 'Okay, ' + randomSignOff;
       
 
     this.response.speak(speechOutput).audioPlayerStop();
@@ -130,7 +173,8 @@ var handlers = {
       var cardImage = streamInfo.image;
       this.response.cardRenderer(cardTitle, cardContent, cardImage);
     }
-
+    
+   
     this.response.audioPlayerPlay('ENQUEUE', streamInfo.url, 2, 1, 0);
     this.emit(':responseReady');
   },
