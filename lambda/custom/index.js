@@ -5,11 +5,14 @@ var Alexa = require('alexa-sdk');
 var streamInfo = {
   title: 'Outdoor Scene',
   subtitle: 'A relaxing audio stream including crickets, trains, cats, birds, etc.',
-  cardContent: "Contact us at http://www.ericoswald.com",
+  cardContent: "Enjoy :-)",
   url: 'https://s3-us-west-1.amazonaws.com/ericcrickets/crickets.mp3',
   image: {
-    largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleecholarge.png',
-    smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleechosmall.png'
+    largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleecho512.png',
+    smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleecho108.png',
+    
+    //largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleecholarge.png',
+    //smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleechosmall.png'
   }
 };
 
