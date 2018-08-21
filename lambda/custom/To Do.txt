@@ -1,7 +1,0 @@
-Learn git
-Add randomized welcome message
-Can keep saying stop
-Paid version
-Randomized sign off
-Get cards to show
-    Cricket logo for cards

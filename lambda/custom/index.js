@@ -2,6 +2,7 @@
 
 var Alexa = require('alexa-sdk');
 
+
 var streamInfo = {
   title: 'Outdoor Scene',
   subtitle: 'A relaxing audio stream including crickets, trains, cats, birds, etc.',
@@ -74,7 +75,26 @@ var handlers = {
   },
   'AMAZON.StopIntent': function() {
     console.log()
-    this.response.speak('Okay. I\'ll let the crickets go to sleep now.').audioPlayerStop();
+
+    var NightSignOff = [
+      'Its time for all good crickets to go to sleep now.',
+      'Good night, maybe the crickets will visit you in your dreams.',
+      'The crickets will let you sleep now. They told me to say good night.',
+      'The owls say sweet dreams.',
+      'The crickets say its time for everyone outdoors to go to bed now.',
+      'Its time for some peace and quiet now.',
+      'Everyone outdoors says good night.',
+      'Okay. I\'ll let the crickets go to sleep now.',
+      'I\'ll put the train in the station and everyone will be quiet now.',
+      'Its time for the crickets to have their dinner anyway.',
+    ];
+    var SignOffArr = NightSignOff;
+    var SignOffIndex = Math.floor(Math.random() * SignOffArr.length);
+    var randomSignOff = SignOffArr[SignOffIndex];
+    var speechOutput = randomSignOff;
+      
+
+    this.response.speak(speechOutput).audioPlayerStop();
     this.emit(':responseReady');
   },
   'AMAZON.ResumeIntent': function() {
