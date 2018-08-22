@@ -8,7 +8,7 @@
           "apis": {
             "custom": {
               "endpoint": {
-                "uri": "ask-custom-audio-stream-starter-default"
+                "uri": "ask-custom-crickets"
               }
             }
           }
@@ -16,7 +16,7 @@
       },
       "resources": {
         "manifest": {
-          "eTag": "936b23128e106da863fcd01b18e66c33"
+          "eTag": "52f346680715a858fd092a5f6bbeedae"
         },
         "interactionModel": {
           "en-US": {
@@ -25,13 +25,13 @@
         },
         "lambda": [
           {
-            "arn": "arn:aws:lambda:us-east-1:127860566682:function:ask-custom-audio-stream-starter-default",
-            "functionName": "arn:aws:lambda:us-east-1:127860566682:function:ask-custom-audio-stream-starter-default",
+            "arn": "arn:aws:lambda:us-east-1:127860566682:function:ask-custom-crickets",
+            "functionName": "ask-custom-crickets",
             "awsRegion": "us-east-1",
             "alexaUsage": [
               "custom/default"
             ],
-            "revisionId": "580914f4-05cd-4745-9970-2a43adeca05f"
+            "revisionId": "91c2d649-467b-49d4-9cda-a287ce146390"
           }
         ]
       }
