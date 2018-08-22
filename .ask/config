@@ -26,12 +26,12 @@
         "lambda": [
           {
             "arn": "arn:aws:lambda:us-east-1:127860566682:function:ask-custom-crickets",
-            "functionName": "ask-custom-crickets",
+            "functionName": "arn:aws:lambda:us-east-1:127860566682:function:ask-custom-crickets",
             "awsRegion": "us-east-1",
             "alexaUsage": [
               "custom/default"
             ],
-            "revisionId": "91c2d649-467b-49d4-9cda-a287ce146390"
+            "revisionId": "e93255c0-9521-4e5d-9f97-5eaf756516c0"
           }
         ]
       }

@@ -67,11 +67,14 @@ var streamInfo = {
   title: 'Outdoor Scene',
   subtitle: 'A relaxing audio stream including crickets, trains, cats, birds, etc.',
   cardContent: "Enjoy :-)",
-  url: 'https://s3-us-west-1.amazonaws.com/ericcrickets/crickets.mp3',
+  //This is the old url before changing bucket to N. Virginia url: 'https://s3-us-west-1.amazonaws.com/ericcrickets/crickets.mp3',
+  url: 'https://s3.amazonaws.com/ericcricketsnvirginia/crickets.mp3',
   
   image: {
-    largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+1200x800.png',
-    smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+720x480.png',
+    largeImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1200x800.png',
+    smallImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+720x480.png',
+    //This is the old url before changing bucket to N. Virginia url largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+1200x800.png',
+    //This is the old url before changing bucket to N. Virginia url smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+720x480.png',
   }
 };
 
