@@ -5,7 +5,7 @@
         "en-US": {
           "summary": "A relaxing audio scene.",
           "examplePhrases": [
-            "Alexa, open Outdoor Scene",
+            "Alexa, run Outdoor Scene",
             "Alexa, play Outdoor Scene",
             "Alexa, ask Outdoor Scene to play"
           ],
@@ -16,8 +16,8 @@
           ],
           "name": "outdoor scene",
           "description": "A relaxing audio scene with crickets, trains, dogs, cats, owls and loons.",
-          "smallIconUri": "",
-          "largeIconUri": ""
+          "smallIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/gentleecho108.png",
+          "largeIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/gentleecho512.png"
         }
       },
       "isAvailableWorldwide": true,
@@ -44,7 +44,13 @@
       "isExportCompliant": true,
       "containsAds": false,
       "isChildDirected": false,
-      "usesPersonalInfo": false
+      "usesPersonalInfo": false,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "http://ericoswald.com/privacy-policy/",
+          "termsOfUseUrl": "http://ericoswald.com/terms/"
+        }
+      }
     }
   }
 }
