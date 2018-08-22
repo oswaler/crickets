@@ -83,14 +83,14 @@ var handlers = {
   },
   'PlayStream': function() {
     
-    //choose random welcome signon
-    var SignOnArr = SignOn;
-    var SignOnIndex = Math.floor(Math.random() * SignOnArr.length);
-    var randomSignOn = SignOnArr[SignOnIndex];
-    var speechOutput = 'Okay, ' + randomSignOn;
+   //choose random welcome signon
+   var SignOnArr = SignOn;
+   var SignOnIndex = Math.floor(Math.random() * SignOnArr.length);
+   var randomSignOn = SignOnArr[SignOnIndex];
+   var speechOutputSignOn = 'Okay, ' + randomSignOn;
     
     
-    this.response.speak(speechOutput).audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
+    this.response.speak(speechOutputSignOn).audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
     this.emit(':responseReady');
   },
   'AMAZON.HelpIntent': function() {
@@ -130,11 +130,27 @@ var handlers = {
   'AMAZON.StopIntent': function() {
     console.log()
 
+   //Find out whether its morning, afternoon or evening
+   var datFullDate = new Date();
+   var datHour = datFullDate.getHours();
+   var SignOffArr;
+
+   if (datHour >= 5 && datHour < 12) {
+    SignOffArr = MorningSignOff;
+   }   
+   else if (datHour >= 12 && datHour < 18) {
+     SignOffArr = AfternoonSignOff;
+   }
+   else {
+     SignOffArr = NightSignOff;
+   }
+    
     // Choose random signoff message from proper set of signoffs
-    var SignOffArr = NightSignOff;
+    //var SignOffArr = NightSignOff;
     var SignOffIndex = Math.floor(Math.random() * SignOffArr.length);
     var randomSignOff = SignOffArr[SignOffIndex];
-    var speechOutput = 'Okay, ' + randomSignOff;
+    var speechOutput = 'Okay, its ' + datHour + ' oclock.' + randomSignOff;
+    //var speechOutput = 'Okay, ' + randomSignOff;
       
 
     this.response.speak(speechOutput).audioPlayerStop();
