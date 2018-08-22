@@ -2,6 +2,14 @@
 
 var Alexa = require('alexa-sdk');
 
+
+/* added line
+context.callbackWaitsForEmptyEventLoop = false;
+to exports.handler
+This ends the session as soon as user says stop. Remove this if it becomes
+useful to leave the session open.
+*/
+
 // Define signoffs and welcomes to be chosen at random on play and stop
 const SignOff = [
   'Its time for all good crickets to go to sleep now.',
@@ -78,7 +86,7 @@ exports.handler = (event, context, callback) => {
     handlers,
     audioEventHandlers
   );
-
+  context.callbackWaitsForEmptyEventLoop = false;
   alexa.execute();
 };
 
@@ -117,12 +125,12 @@ var handlers = {
   },
   'AMAZON.NextIntent': function() {
     console.log()
-    this.response.speak('There is only one scene.');
+    this.response.speak('For now there is only one scene. Others will be added later.');
     this.emit(':responseReady');
   },
   'AMAZON.PreviousIntent': function() {
     console.log()
-    this.response.speak('There is only one scene.');
+    this.response.speak('There is only one scene. Others will be added later.');
     this.emit(':responseReady');
   },
   'AMAZON.PauseIntent': function() {
