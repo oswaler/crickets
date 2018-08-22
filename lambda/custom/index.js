@@ -62,18 +62,16 @@ const AfternoonSignOff = [
 
 
 
-
+// Define values used in audio stream and display card
 var streamInfo = {
   title: 'Outdoor Scene',
   subtitle: 'A relaxing audio stream including crickets, trains, cats, birds, etc.',
   cardContent: "Enjoy :-)",
   url: 'https://s3-us-west-1.amazonaws.com/ericcrickets/crickets.mp3',
+  
   image: {
-    largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleecho512.png',
-    smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleecho108.png',
-    
-    //largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleecholarge.png',
-    //smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentleechosmall.png'
+    largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+1200x800.png',
+    smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+720x480.png',
   }
 };
 
@@ -103,9 +101,11 @@ var handlers = {
    var randomSignOn = SignOnArr[SignOnIndex];
    var speechOutputSignOn = 'Okay, ' + randomSignOn;
     
-    
-    this.response.speak(speechOutputSignOn).audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
-    this.emit(':responseReady');
+  
+  //output response including card, speech and audio
+  this.response.cardRenderer(streamInfo.title, streamInfo.cardContent, streamInfo.image);
+  this.response.speak(speechOutputSignOn).audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
+  this.emit(':responseReady');
   },
   'AMAZON.HelpIntent': function() {
     // skill help logic goes here
@@ -170,7 +170,7 @@ var handlers = {
     var randomSignOff = SignOffArr[SignOffIndex];
     var speechOutput = 'Okay, ' + randomSignOff;
       
-
+    
     this.response.speak(speechOutput).audioPlayerStop();
     this.emit(':responseReady');
   },
