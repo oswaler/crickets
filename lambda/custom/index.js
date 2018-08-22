@@ -2,8 +2,8 @@
 
 var Alexa = require('alexa-sdk');
 
-// Define sets of signoffs and welcomes to be chosen at random on play and stop
-const NightSignOff = [
+// Define signoffs and welcomes to be chosen at random on play and stop
+const SignOff = [
   'Its time for all good crickets to go to sleep now.',
   'Good night, maybe the crickets will visit you in your dreams.',
   'The crickets will let you sleep now. They told me to say good night.',
@@ -15,8 +15,22 @@ const NightSignOff = [
   'I\'ll let the crickets go to sleep now.',
   'I\'ll put the train in the station and everyone will be quiet now.',
   'Its time for the crickets to have their dinner anyway.',
+  'The crickets have been singing all night. Its time for them to take a nap.',
+  'The crickets will be here for you later.',
 ];
 
+const SignOn = [
+  'Let me open the window so you can hear everyone.',
+  'Let me go wake up the crickets.',
+  'Let\'s see if the crickets are ready.',
+  'I think I hear the crickets, let me go open the window.',
+  'Crickets, all together now. One, Two, Three.',
+  'The crickets just finished warming up. They\'re ready to sing for you now.',
+  'Give me a second, I just need to make sure everyone\'s ready.',
+  'I just need to round everyone up.',
+];
+
+/* Removing localized time signoffs due to privacy issues
 const MorningSignOff = [
   'Its time for the crickets to go have their breakfast anyway.',
   'I\'ll let the crickets get on with their day.',
@@ -36,17 +50,9 @@ const AfternoonSignOff = [
   'I\'ll let everyone go play until you\'re ready for them later.',
   'I need to go let the dogs out anyway.',
 ];
+*/
 
-const SignOn = [
-  'Let me open the window so you can hear everyone.',
-  'Let me go wake up the crickets.',
-  'Let\'s see if the crickets are ready.',
-  'I think I hear the crickets, let me go open the window.',
-  'Crickets, all together now. One, Two, Three.',
-  'The crickets just finished warming up. They\'re ready to sing for you now.',
-  'Give me a second, I just need to make sure everyone\'s ready.',
-  'I just need to round everyone up.',
-];
+
 
 
 var streamInfo = {
@@ -130,7 +136,11 @@ var handlers = {
   'AMAZON.StopIntent': function() {
     console.log()
 
-   //Find out whether its morning, afternoon or evening
+   /*Find out whether its morning, afternoon or evening
+    ******Disabling code for this due to privacy concerns of getting user's local time.
+          If it becomes less invasive in the future to get their timezone info 
+          I'll add this back in.
+
    var datFullDate = new Date();
    var datHour = datFullDate.getHours();
    var SignOffArr;
@@ -144,13 +154,13 @@ var handlers = {
    else {
      SignOffArr = NightSignOff;
    }
+    */
     
     // Choose random signoff message from proper set of signoffs
-    //var SignOffArr = NightSignOff;
+    var SignOffArr = SignOff;
     var SignOffIndex = Math.floor(Math.random() * SignOffArr.length);
     var randomSignOff = SignOffArr[SignOffIndex];
-    var speechOutput = 'Okay, its ' + datHour + ' oclock.' + randomSignOff;
-    //var speechOutput = 'Okay, ' + randomSignOff;
+    var speechOutput = 'Okay, ' + randomSignOff;
       
 
     this.response.speak(speechOutput).audioPlayerStop();
