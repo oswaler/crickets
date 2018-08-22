@@ -172,9 +172,8 @@ var handlers = {
     var SignOffIndex = Math.floor(Math.random() * SignOffArr.length);
     var randomSignOff = SignOffArr[SignOffIndex];
     var speechOutput = 'Okay, ' + randomSignOff;
+      
     
-    //output response including card, speech and audio
-    this.response.cardRenderer('Time for the crickets to stop now', randomSignOff, streamInfo.image);
     this.response.speak(speechOutput).audioPlayerStop();
     this.emit(':responseReady');
   },
