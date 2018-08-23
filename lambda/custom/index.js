@@ -1,14 +1,19 @@
 'use strict';
 
 var Alexa = require('alexa-sdk');
-
-
 /* added line
 context.callbackWaitsForEmptyEventLoop = false;
 to exports.handler
 This ends the session as soon as user says stop. Remove this if it becomes
 useful to leave the session open.
 */
+
+
+// values used in rendering the body template for Show
+const makeImage = Alexa.utils.ImageUtils.makeImage;
+var imgAddress = "https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600.png";
+
+
 
 // Define signoffs and welcomes to be chosen at random on play and stop
 const SignOff = [
@@ -104,12 +109,28 @@ var handlers = {
    var randomSignOn = SignOnArr[SignOnIndex];
    var speechOutputSignOn = 'Okay, ' + randomSignOn;
     
-  
+  //If the device has a display, render body template 7. Otherwise, create a standard card.
+  if (supportsDisplay.call(this))
+  {
+    
+       const bodyTemplate7 = new Alexa.templateBuilders.BodyTemplate7Builder();
+                    
+                    var template = bodyTemplate7.setTitle("The crickets will sing for you now.")
+                                        .setImage(makeImage(imgAddress))
+                                        .build();
+                                        
+                    this.response.renderTemplate(template)
+                                        .shouldEndSession(null);
+  }
+  else {
+    this.response.cardRenderer(streamInfo.title, streamInfo.cardContent, streamInfo.image);
+  }
+
   //output response including card, speech and audio
-  this.response.cardRenderer(streamInfo.title, streamInfo.cardContent, streamInfo.image);
   this.response.speak(speechOutputSignOn).audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
   this.emit(':responseReady');
   },
+
   'AMAZON.HelpIntent': function() {
     // skill help logic goes here
     this.emit(':responseReady');
@@ -174,7 +195,7 @@ var handlers = {
     var speechOutput = 'Okay, ' + randomSignOff;
     
     //output response including card, speech and audio
-    this.response.cardRenderer('Time for the crickets to stop now', randomSignOff, streamInfo.image);
+    this.response.cardRenderer('Time for the crickets to stop now.', randomSignOff, streamInfo.image);
     this.response.speak(speechOutput).audioPlayerStop();
     this.emit(':responseReady');
   },
@@ -244,4 +265,15 @@ var audioEventHandlers = {
     this.response.audioPlayerClearQueue('CLEAR_ENQUEUED');
     this.emit(':responseReady');
   }
+}
+
+function supportsDisplay() {
+  var hasDisplay =
+  this.event.context &&
+  this.event.context.System &&
+  this.event.context.System.device &&
+  this.event.context.System.device.supportedInterfaces &&
+  this.event.context.System.device.supportedInterfaces.Display
+
+  return hasDisplay;
 }
