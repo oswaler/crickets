@@ -11,7 +11,7 @@ useful to leave the session open.
 
 // values used in rendering the body template for Show
 const makeImage = Alexa.utils.ImageUtils.makeImage;
-var imgAddress = "https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600.png";
+var imgAddress = "https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png";
 
 
 
@@ -76,8 +76,8 @@ var streamInfo = {
   url: 'https://s3.amazonaws.com/ericcricketsnvirginia/crickets.mp3',
   
   image: {
-    largeImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1200x800.png',
-    smallImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+720x480.png',
+    largeImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png',
+    smallImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+720x480parttrans.png',
     //This is the old url before changing bucket to N. Virginia url largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+1200x800.png',
     //This is the old url before changing bucket to N. Virginia url smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+720x480.png',
   }
@@ -149,12 +149,12 @@ var handlers = {
   },
   'AMAZON.NextIntent': function() {
     console.log()
-    this.response.speak('For now there is only one scene. Others will be added later.');
+    this.response.speak('For now there is only one dream. Others will be added later.');
     this.emit(':responseReady');
   },
   'AMAZON.PreviousIntent': function() {
     console.log()
-    this.response.speak('There is only one scene. Others will be added later.');
+    this.response.speak('There is only one dream. Others will be added later.');
     this.emit(':responseReady');
   },
   'AMAZON.PauseIntent': function() {

@@ -3,19 +3,38 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "A relaxing audio scene.",
+          "summary": "A relaxing audio dream.",
           "examplePhrases": [
-            "Alexa, run Outdoor Scene",
-            "Alexa, play Outdoor Scene",
-            "Alexa, ask Outdoor Scene to play"
+            "Alexa, run Outdoor Dream",
+            "Alexa, play Outdoor Dream",
+            "Alexa, ask Outdoor Dream to play"
           ],
           "keywords": [
             "audio streaming",
             "crickets",
+            "outdoors",
+            "owl",
+            "dog",
+            "cat",
+            "train",
+            "relaxing",
+            "nighttime",
+            "night",
+            "relax",
+            "nice",
+            "cricket",
+            "outdoor",
+            "chime",
+            "loon",
+            "sound",
+            "dream",
+            "dreamy",
+            "sound machine",
+            "white noise machine",
             "white noise"
           ],
-          "name": "outdoor scene",
-          "description": "A relaxing audio scene with crickets, trains, dogs, cats, owls and loons.",
+          "name": "outdoor dream",
+          "description": "A relaxing audio dream with crickets, trains, dogs, cats, owls, chimes and loons.",
           "smallIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/gentleecho108.png",
           "largeIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/gentleecho512.png"
         }
