@@ -11,7 +11,7 @@ useful to leave the session open.
 
 // values used in rendering the body template for Show
 const makeImage = Alexa.utils.ImageUtils.makeImage;
-var imgAddress = "https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png";
+var imgAddress = "https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png"
 
 
 
@@ -72,9 +72,13 @@ var streamInfo = {
   title: 'The crickets will sing for you now.',
   subtitle: 'A relaxing audio stream including crickets, trains, cats, birds, etc.',
   cardContent: "Enjoy :-)",
-  //This is the old url before changing bucket to N. Virginia url: 'https://s3-us-west-1.amazonaws.com/ericcrickets/crickets.mp3',
-  url: 'https://s3.amazonaws.com/ericcricketsnvirginia/crickets.mp3',
   
+  //plays the sound file through soundcloud. Acct is sc@ericoswald.com
+  url: 'https://feeds.soundcloud.com/stream/490721760-user-973941472-sfile.mp3',
+  //url: 'https://gentleechodesigns.com/crickets/crickets.mp3',
+  //url: 'https://s3.amazonaws.com/ericcricketsnvirginia/crickets.mp3',
+  
+ 
   image: {
     largeImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png',
     smallImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+720x480parttrans.png',
@@ -126,8 +130,10 @@ var handlers = {
     this.response.cardRenderer(streamInfo.title, streamInfo.cardContent, streamInfo.image);
   }
 
+  
   //output response including card, speech and audio
   this.response.speak(speechOutputSignOn).audioPlayerPlay('REPLACE_ALL', streamInfo.url, 1, null, 0);
+  console.log();
   this.emit(':responseReady');
   },
 
@@ -262,6 +268,7 @@ var audioEventHandlers = {
   },
   'PlaybackFailed': function() {
     console.log()
+   // this.response.speak('Sorry, I could not play the audio file.').audioPlayerClearQueue('CLEAR_ENQUEUED');
     this.response.audioPlayerClearQueue('CLEAR_ENQUEUED');
     this.emit(':responseReady');
   }
