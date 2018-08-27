@@ -34,15 +34,17 @@
             "white noise"
           ],
           "name": "outdoor dream",
-          "description": "A relaxing audio dream with crickets, trains, dogs, cats, owls, chimes and loons.",
-          "smallIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/gentleecho108.png",
-          "largeIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/gentleecho512.png"
+          "description": "A relaxing audio dream with crickets, trains, dogs, cats, owls, chimes and loons. The audio lasts about an hour and loops continuously. More dreams will be coming including streams, rainstorms, birds, frogs and more!",
+          "smallIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/treesmall108.png",
+          "largeIconUri": "https://s3.amazonaws.com/ericcricketsnvirginia/treesmall512.png"
         }
       },
       "isAvailableWorldwide": true,
       "testingInstructions": "No special instructions",
       "category": "STREAMING_SERVICE",
-      "distributionCountries": []
+      "distributionCountries": [
+        "US"
+      ]
     },
     "apis": {
       "custom": {

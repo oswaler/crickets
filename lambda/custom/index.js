@@ -11,7 +11,7 @@ useful to leave the session open.
 
 // values used in rendering the body template for Show
 const makeImage = Alexa.utils.ImageUtils.makeImage;
-var imgAddress = "https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png"
+var imgAddress = "https://s3.amazonaws.com/ericcricketsnvirginia/tree_big_1200x800trans.png"
 
 
 
@@ -80,8 +80,10 @@ var streamInfo = {
   
  
   image: {
-    largeImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png',
-    smallImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+720x480parttrans.png',
+    largeImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/tree_big_1024x600.png',
+    smallImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/tree_big_720x480.png',
+    //largeImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+1024x600parttrans.png',
+    //smallImageUrl: 'https://s3.amazonaws.com/ericcricketsnvirginia/gentle+echo+720x480parttrans.png',
     //This is the old url before changing bucket to N. Virginia url largeImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+1200x800.png',
     //This is the old url before changing bucket to N. Virginia url smallImageUrl: 'https://s3-us-west-1.amazonaws.com/ericcrickets/gentle+echo+720x480.png',
   }
@@ -200,8 +202,25 @@ var handlers = {
     var randomSignOff = SignOffArr[SignOffIndex];
     var speechOutput = 'Okay, ' + randomSignOff;
     
+//If the device has a display, render body template 7. Otherwise, create a standard card.
+if (supportsDisplay.call(this))
+{
+  
+     const bodyTemplate7 = new Alexa.templateBuilders.BodyTemplate7Builder();
+                  
+                  var template = bodyTemplate7.setTitle("Time for the crickets to stop now.")
+                                      .setImage(makeImage(imgAddress))
+                                      .build();
+                                      
+                  this.response.renderTemplate(template)
+                                      .shouldEndSession(null);
+}
+else {
+  this.response.cardRenderer('Time for the crickets to stop now.', randomSignOff, streamInfo.image);
+}
+
+
     //output response including card, speech and audio
-    this.response.cardRenderer('Time for the crickets to stop now.', randomSignOff, streamInfo.image);
     this.response.speak(speechOutput).audioPlayerStop();
     this.emit(':responseReady');
   },
